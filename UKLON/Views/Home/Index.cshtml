@@ -5,10 +5,11 @@
 
 <div class="row">
     <form asp-controller="Home" asp-action="InsertData">
-        <input name="AddressFrom" value="@Model.AddressFrom" required/>
-        <input name="AddressTo" id="inputTextareaToSend" value="@Model.AddressTo" required/>
-        <input name="Phone" id="inputTextareaToSend" value="@Model.Phone" required/>
-        <input type="hidden" name="Price" id="inputTextareaToSend" value="@Model.Price" />
+        <input type="hidden" name="Id" id="inputTextareaId" value="@Model.Id" />
+        <input name="AddressFrom" id="inputTextareaAddressFrom" value="@Model.AddressFrom" placeholder="Откуда" required />
+        <input name="AddressTo" id="inputTextareaAddressTo" value="@Model.AddressTo" placeholder="Куда" required />
+        <input name="Phone" id="inputTextareaPhone" value="@Model.Phone" placeholder="Телефон" required />
+        <input type="hidden" name="Price" id="inputTextareaPrice" value="@Model.Price" />
         <button type="submit" class="btn btn-default">Принять заказ</button>
     </form>
 </div>

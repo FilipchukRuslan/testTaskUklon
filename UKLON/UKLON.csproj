@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BAL\BAL.csproj" />
+    <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\DAL\DAO.csproj" />
   </ItemGroup>
 

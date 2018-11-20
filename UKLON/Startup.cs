@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BAL;
+using BAL.Interface;
+using Common;
+using Common.Interface;
 using DAO;
 using DAO.Interface;
 using Microsoft.AspNetCore.Builder;
@@ -32,11 +36,12 @@ namespace UKLON
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
-
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddScoped<IModelContext, ModelContext>();
+            services.AddScoped<IOrderManager, OrderManager>();
+            services.AddSingleton<IModelContext, ModelContext>();
+            services.AddSingleton<IMyRandom, MyRandom>(); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
