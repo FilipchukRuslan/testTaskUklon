@@ -2,14 +2,25 @@
 @{
     ViewData["Title"] = "Make Order";
 }
-
+<h2>Сделать заказ</h2>
 <div class="row">
+    <hr />
     <form asp-controller="Home" asp-action="InsertData">
-        <input type="hidden" name="Id" id="inputTextareaId" value="@Model.Id" />
-        <input name="AddressFrom" id="inputTextareaAddressFrom" value="@Model.AddressFrom" placeholder="Откуда" required />
-        <input name="AddressTo" id="inputTextareaAddressTo" value="@Model.AddressTo" placeholder="Куда" required />
-        <input name="Phone" id="inputTextareaPhone" value="@Model.Phone" placeholder="Телефон" required />
-        <input type="hidden" name="Price" id="inputTextareaPrice" value="@Model.Price" />
-        <button type="submit" class="btn btn-default">Принять заказ</button>
+        <input type="hidden" name="Id" id="inputTextareaId" value="@Model.Id" /><br /><br />
+        <input name="AddressFrom" id="inputTextareaAddressFrom" value="@Model.AddressFrom" asp-for="AddressFrom" placeholder="Откуда" required /><br /><br />
+        <input name="AddressTo" id="inputTextareaAddressTo" value="@Model.AddressTo" asp-for="AddressTo" placeholder="Куда" required /><br /><br />
+        <input name="Phone" id="inputTextareaPhone" value="@Model.Phone" asp-for="Phone" placeholder="Телефон" required /><br /><br />
+        <input type="hidden" name="Price" id="inputTextareaPrice" value="@Model.Price" /><br />
+        <button type="submit" class="btn btn-default">Принять заказ</button><br /><br />
     </form>
 </div>
+
+<div class="row">
+    <hr />
+    <form asp-controller="Home" asp-action="ShowOrders">
+        <button type="submit" class="btn btn-default">Показать все заказы</button>
+    </form>
+
+    <hr />
+</div>
+

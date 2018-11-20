@@ -10,6 +10,7 @@ using Common.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using UKLON.Models;
+using UKLON.ViewModel;
 
 namespace UKLON.Controllers
 {
@@ -42,6 +43,28 @@ namespace UKLON.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult ShowOrders() => View(orderManager.GetAll());
+
+        public IActionResult EditOrder(int Id) => View(orderManager.GetById(Id));
+
+        public IActionResult UpdateOrder(int Id, string AddressFrom, string AddressTo, string Phone, int Price)
+        {
+            var order = orderManager.GetById(Id);
+            order.AddressFrom = AddressFrom;
+            order.AddressTo = AddressTo;
+            order.Phone = Phone;
+            order.Price = Price;
+            orderManager.Update(order);
+            return RedirectToAction("ShowOrders", "Home", orderManager.GetAll());
+        }
+
+        public IActionResult CancelOrder(CancelOrderVM cancelOrder)
+        {
+            var order = orderManager.GetById(cancelOrder.orderId);
+            order.IsCanceled = !cancelOrder.flag;
+            orderManager.Update(order);
+            return RedirectToAction("ShowOrders", "Home", orderManager.GetAll());
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

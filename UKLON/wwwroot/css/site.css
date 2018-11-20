@@ -22,7 +22,15 @@ body {
 .carousel-inner .item img[src$=".svg"] {
     width: 100%;
 }
-
+.gradient {
+    background-image: linear-gradient(rgba(199, 199, 199, 0.74), white, rgba(199, 199, 199, 0.74));
+}
+.yellow {
+    background-color: yellow;
+}
+.red{
+    background-color:indianred;
+}
 /* QR code generator */
 #qrCode {
     margin: 15px;
