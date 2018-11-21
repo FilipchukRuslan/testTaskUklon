@@ -29,16 +29,7 @@ namespace UKLON.Controllers
 
         public IActionResult InsertData(string AddressFrom, string AddressTo, string Phone)
         {
-            int id = 0;
-            if (!orderManager.GetAll().Any())
-            {
-                id += 1;
-            }
-            else
-            {
-                id = orderManager.GetAll().Count() + 1;
-            }
-            var order = new Order { Id = id, AddressFrom = AddressFrom, AddressTo = AddressTo, Phone = Phone, Price = myRandom.GetRandomValue(), IsCanceled = false};
+            var order = orderManager.SetOrderValues(AddressFrom, AddressTo, Phone);
             orderManager.Insert(order);
             return RedirectToAction("Index");
         }
@@ -47,13 +38,8 @@ namespace UKLON.Controllers
 
         public IActionResult EditOrder(int Id) => View(orderManager.GetById(Id));
 
-        public IActionResult UpdateOrder(int Id, string AddressFrom, string AddressTo, string Phone, int Price)
+        public IActionResult UpdateOrder(Order order)//принять ордер вместо єтих параметров
         {
-            var order = orderManager.GetById(Id);
-            order.AddressFrom = AddressFrom;
-            order.AddressTo = AddressTo;
-            order.Phone = Phone;
-            order.Price = Price;
             orderManager.Update(order);
             return RedirectToAction("ShowOrders", "Home", orderManager.GetAll());
         }
@@ -65,6 +51,7 @@ namespace UKLON.Controllers
             orderManager.Update(order);
             return RedirectToAction("ShowOrders", "Home", orderManager.GetAll());
         }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

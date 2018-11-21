@@ -12,5 +12,6 @@ namespace BAL.Interface
         void Insert(Order item);
         void Update(Order item);
         void Delete(Order item);
+        Order SetOrderValues(string AddressFrom, string AddressTo, string Phone);
     }
 }
