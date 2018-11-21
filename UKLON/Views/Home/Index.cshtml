@@ -9,7 +9,8 @@
         <input type="hidden" name="Id" id="inputTextareaId" value="@Model.Id" /><br /><br />
         <input name="AddressFrom" id="inputTextareaAddressFrom" value="@Model.AddressFrom" asp-for="AddressFrom" placeholder="Откуда" required /><br /><br />
         <input name="AddressTo" id="inputTextareaAddressTo" value="@Model.AddressTo" asp-for="AddressTo" placeholder="Куда" required /><br /><br />
-        <input name="Phone" id="inputTextareaPhone" value="@Model.Phone" asp-for="Phone" placeholder="Телефон" required /><br /><br />
+        <input name="Phone" id="inputTextareaPhone" value="@Model.Phone" asp-for="Phone" placeholder="tel. 1234567890" pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$" required /><br /><br />
+
         <input type="hidden" name="Price" id="inputTextareaPrice" value="@Model.Price" /><br />
         <button type="submit" class="btn btn-default">Принять заказ</button><br /><br />
     </form>
@@ -24,3 +25,6 @@
     <hr />
 </div>
 
+@section Scripts{
+    <script src="~/js/validation.js"></script>
+}
