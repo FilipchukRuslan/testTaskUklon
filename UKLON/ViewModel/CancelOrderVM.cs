@@ -7,7 +7,7 @@ namespace UKLON.ViewModel
 {
     public class CancelOrderVM
     {
-        public int orderId { get; set; }
-        public bool flag { get; set; }
+        public int OrderId { get; set; }
+        public bool Flag { get; set; }
     }
 }

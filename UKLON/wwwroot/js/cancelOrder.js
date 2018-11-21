@@ -4,11 +4,11 @@
         parent = $this.parents('.parent'),
         showHideEl = parent.find('.info');
 
-    orderId = showHideEl.data('id');
-    flag = showHideEl.data('flag');
+    OrderId = showHideEl.data('id');
+    Flag = showHideEl.data('flag');
 
-    obj.orderId = orderId;
-    obj.flag = flag;
+    obj.OrderId = OrderId;
+    obj.Flag = Flag;
 
     $.ajax({
         type: "POST",

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BAL.Interface
 {
-    public interface IOrderManager //Except CRUD, here I can add some methods like AddToLogs and other
+    public interface IOrderManager
     {
         List<Order> GetAll();
         Order GetById(int id);
@@ -13,5 +13,6 @@ namespace BAL.Interface
         void Update(Order item);
         void Delete(Order item);
         Order SetOrderValues(string AddressFrom, string AddressTo, string Phone);
+        void CancelOrder(bool isCanceled, int id);
     }
 }

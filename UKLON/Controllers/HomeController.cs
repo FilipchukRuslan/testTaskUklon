@@ -16,13 +16,11 @@ namespace UKLON.Controllers
 {
     public class HomeController : Controller
     {
-        IOrderManager orderManager;
-        IMyRandom myRandom;
+        private readonly IOrderManager orderManager;
         
-        public HomeController(IOrderManager orderManager, IMyRandom myRandom)
+        public HomeController(IOrderManager orderManager)
         {
             this.orderManager = orderManager;
-            this.myRandom = myRandom;
         }
 
         public IActionResult Index() => View(new Order());
@@ -38,7 +36,7 @@ namespace UKLON.Controllers
 
         public IActionResult EditOrder(int Id) => View(orderManager.GetById(Id));
 
-        public IActionResult UpdateOrder(Order order)//принять ордер вместо єтих параметров
+        public IActionResult UpdateOrder(Order order)
         {
             orderManager.Update(order);
             return RedirectToAction("ShowOrders", "Home", orderManager.GetAll());
@@ -46,9 +44,7 @@ namespace UKLON.Controllers
 
         public IActionResult CancelOrder(CancelOrderVM cancelOrder)
         {
-            var order = orderManager.GetById(cancelOrder.orderId);
-            order.IsCanceled = !cancelOrder.flag;
-            orderManager.Update(order);
+            orderManager.CancelOrder(cancelOrder.Flag, cancelOrder.OrderId);
             return RedirectToAction("ShowOrders", "Home", orderManager.GetAll());
         }
 

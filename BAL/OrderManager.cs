@@ -10,12 +10,19 @@ namespace BAL
 {
     public class OrderManager : IOrderManager
     {
-        IModelContext modelContext;
-        IMyRandom myRandom;
+        private readonly IModelContext modelContext;
+        private readonly IMyRandom myRandom;
         public OrderManager(IModelContext modelContext, IMyRandom myRandom)
         {
             this.modelContext = modelContext;
             this.myRandom = myRandom;
+        }
+
+        public void CancelOrder(bool isCanceled, int id)
+        {
+            var order = GetById(id);
+            order.IsCanceled = !isCanceled;
+            Update(order);
         }
 
         public void Delete(Order item)
@@ -56,12 +63,6 @@ namespace BAL
 
         public void Update(Order item)
         {
-            //var order = GetById(item.Id);
-            //order.AddressFrom = item.AddressFrom;
-            //order.AddressTo = item.AddressTo;
-            //order.Phone = item.Phone;
-            //order.Price = item.Price;
-
             modelContext.Update(item);
         }
     }

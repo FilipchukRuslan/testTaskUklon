@@ -4,9 +4,9 @@
         parent = $this.parents('.parent'),
         showHideEl = parent.find('.info');
 
-    orderId = showHideEl.data('id');
+    OrderId = showHideEl.data('id');
 
-    obj.orderId = orderId;
+    obj.OrderId = OrderId;
 
     $.ajax({
         type: "POST",
